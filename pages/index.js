@@ -1,6 +1,21 @@
-import Head from "next/head";
-import Image from "next/image";
+import axios from "axios";
+import ContactList from "../components/ContactList";
 
-export default function Home() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+const Home = ({ contacts }) => {
+  return (
+    <>
+      <ContactList contacts={contacts}></ContactList>
+    </>
+  );
+};
+
+export async function getServerSideProps(context) {
+  const { data } = await axios.get("http://localhost:4000/api/contacts");
+  const { contacts } = data;
+
+  return {
+    props: { contacts },
+  };
 }
+
+export default Home;
