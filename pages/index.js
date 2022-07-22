@@ -9,7 +9,7 @@ const Home = ({ contacts }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const { data } = await axios.get("http://localhost:4000/api/contacts");
   const { contacts } = data;
 
