@@ -1,4 +1,9 @@
-const ContactCard = ({ contact, showModal }) => {
+import { useContext } from "react";
+import AppContex from "../../store/app-context";
+
+const ContactCard = ({ contact }) => {
+  const { openModal, changeModalType } = useContext(AppContex);
+
   const {
     firstName,
     lastName,
@@ -8,6 +13,17 @@ const ContactCard = ({ contact, showModal }) => {
     adress,
     description,
   } = contact;
+
+  const openDeleteModal = () => {
+    changeModalType("delete");
+    openModal();
+  };
+
+  const openEditModal = () => {
+    changeModalType("edit");
+    openModal();
+  };
+
   return (
     <div className=" pt-16 flex flex-row justify-center items-center">
       <div className="card w-96 mx-auto rounded-lg  bg-white  shadow-xl p-6">
@@ -28,15 +44,18 @@ const ContactCard = ({ contact, showModal }) => {
         <hr className="mt-8" />
         <div className="flex p-4">
           <div className="w-1/2 text-center">
-            <button className=" text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">
-              Update
+            <button
+              className=" text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 "
+              onClick={openEditModal}
+            >
+              Edit
             </button>
           </div>
           <div className="w-0 border border-gray-300"></div>
           <div className="w-1/2 text-center">
             <button
               className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
-              onClick={showModal}
+              onClick={openDeleteModal}
             >
               Delete
             </button>
