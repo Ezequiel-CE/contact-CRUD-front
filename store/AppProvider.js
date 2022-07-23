@@ -1,9 +1,9 @@
 import AppContext from "./app-context";
-import React, { useReducer } from "react";
+import React, { useReducer, useCallback } from "react";
 
 const defaultState = {
   contacts: [],
-  currectContact: "",
+  currectContact: {},
   showModal: false,
   modalType: "delete",
 };
@@ -18,6 +18,10 @@ const appReducer = (state, action) => {
 
   if (action.type === "CHANGE_MODAL_TYPE") {
     return { ...state, modalType: action.modalType };
+  }
+
+  if (action.type === "SET_CURRENT_USER") {
+    return { ...state, currectContact: action.currectContact };
   }
 
   return defaultState;
@@ -37,15 +41,16 @@ const AppProvider = ({ children }) => {
     dispatchAppAction({ type: "CHANGE_MODAL_TYPE", modalType });
   };
 
-  const clearCartHandler = () => {
-    dispatchAppAction({ type: "CLEAR" });
-  };
+  const setCurrentContact = useCallback((currectContact) => {
+    dispatchAppAction({ type: "SET_CURRENT_USER", currectContact });
+  }, []);
 
   const appContext = {
     contacts: appState.contacts,
     currectContact: appState.currectContact,
     showModal: appState.showModal,
     modalType: appState.modalType,
+    setCurrentContact,
     openModal,
     closeModal,
     changeModalType,

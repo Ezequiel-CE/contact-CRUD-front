@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import AppContex from "../../store/app-context";
 
-const ContactCard = ({ contact }) => {
-  const { openModal, changeModalType } = useContext(AppContex);
+const ContactCard = () => {
+  const { openModal, changeModalType, currectContact } = useContext(AppContex);
 
   const {
     firstName,
@@ -12,7 +12,7 @@ const ContactCard = ({ contact }) => {
     phoneNumber,
     adress,
     description,
-  } = contact;
+  } = currectContact;
 
   const openDeleteModal = () => {
     changeModalType("delete");
