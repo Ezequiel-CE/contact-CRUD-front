@@ -6,7 +6,15 @@ import axios from "axios";
 const OverlayUpdate = ({ close, id }) => {
   const { currectContact, setCurrentContact } = useContext(AppContex);
 
-  const [contactState, setInputs] = useState({});
+  const [contactState, setInputs] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    mail: "",
+    description: "",
+    adress: "",
+    imageUrl: "",
+  });
 
   useEffect(() => {
     setInputs(currectContact);
