@@ -1,10 +1,12 @@
 import axios from "axios";
-import ContactList from "../components/ContactList";
+import ContactList from "../components/Home/ContactList";
+import BtnSection from "../components/Home/BtnSection";
 
 const Home = ({ contacts }) => {
   return (
     <>
       <ContactList contacts={contacts}></ContactList>
+      <BtnSection />
     </>
   );
 };

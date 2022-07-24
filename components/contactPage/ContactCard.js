@@ -31,6 +31,10 @@ const ContactCard = () => {
           className="w-32 h-32 mx-auto rounded-full -mt-20 border-8 border-white"
           src={imageUrl}
           alt={lastName}
+          onError={(e) => {
+            e.target.src = "/defaultAvatar.png";
+            e.onerror = null;
+          }}
         />
         <h2 className="text-center mt-2 mb-4 text-3xl font-medium">{`${firstName} ${lastName}`}</h2>
         <p className="font-normal text-lg">Phone Number:</p>
