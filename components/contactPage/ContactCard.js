@@ -41,10 +41,19 @@ const ContactCard = () => {
         <p className="px-6 text-center my-2  text-base">{phoneNumber}</p>
         <p className="font-normal text-lg">E-mail:</p>
         <p className="px-6 text-center my-2  text-base">{mail}</p>
-        <p className="font-normal text-lg">Adress:</p>
-        <p className="px-6 text-center my-2  text-base">{adress}</p>
-        <p className="font-normal text-lg">Description:</p>
-        <p className="px-6 text-center my-2  text-base">{description}</p>
+        {adress?.length > 0 && (
+          <>
+            <p className="font-normal text-lg">Adress:</p>
+            <p className="px-6 text-center my-2  text-base">{adress}</p>
+          </>
+        )}
+        {description?.length > 0 && (
+          <>
+            <p className="font-normal text-lg">Description:</p>
+            <p className="px-6 text-center my-2  text-base">{description}</p>
+          </>
+        )}
+
         <hr className="mt-8" />
         <div className="flex p-4">
           <div className="w-1/2 text-center">
