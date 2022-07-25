@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import AppContex from "../../store/app-context";
+import ContactImg from "../shared/ContactImg";
 
-const ContactCard = () => {
-  const { openModal, changeModalType, currectContact } = useContext(AppContex);
+const ContactCard = ({ contact }) => {
+  const { openModal, changeModalType } = useContext(AppContex);
 
   const {
     firstName,
@@ -12,7 +13,7 @@ const ContactCard = () => {
     phoneNumber,
     adress,
     description,
-  } = currectContact;
+  } = contact;
 
   const openDeleteModal = () => {
     changeModalType("delete");
@@ -27,15 +28,7 @@ const ContactCard = () => {
   return (
     <div className=" pt-16 flex flex-row justify-center items-center">
       <div className="card w-96 mx-auto rounded-lg  bg-white  shadow-xl p-6">
-        <img
-          className="w-32 h-32 mx-auto rounded-full -mt-20 border-8 border-white"
-          src={imageUrl}
-          alt={lastName}
-          onError={(e) => {
-            e.target.src = "/defaultAvatar.png";
-            e.onerror = null;
-          }}
-        />
+        <ContactImg src={imageUrl} />
         <h2 className="text-center mt-2 mb-4 text-3xl font-medium">{`${firstName} ${lastName}`}</h2>
         <p className="font-normal text-lg">Phone Number:</p>
         <p className="px-6 text-center my-2  text-base">{phoneNumber}</p>

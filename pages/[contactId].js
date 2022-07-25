@@ -21,7 +21,7 @@ const ContactPage = ({ contact }) => {
 
   return (
     <>
-      <ContactCard />
+      <ContactCard contact={contact} />
       <Modal contact={contact} />
     </>
   );
