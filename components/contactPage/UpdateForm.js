@@ -28,7 +28,7 @@ const UpdateForm = ({ id }) => {
     >
       {(formik) => {
         return (
-          <Form className="space-y-6">
+          <Form className="space-y-3">
             <MyInput
               label="Image URL:"
               name="imageUrl"
@@ -82,6 +82,7 @@ const UpdateForm = ({ id }) => {
                 className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 "
                 onClick={(e) => {
                   e.preventDefault();
+                  formik.resetForm();
                   closeModal();
                 }}
               >
