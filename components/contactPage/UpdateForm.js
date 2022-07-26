@@ -13,7 +13,7 @@ const UpdateForm = ({ id }) => {
 
   const updateContactHandler = async (id, values) => {
     try {
-      await axios.put(`http://localhost:4000/api/contacts/${id}`, values);
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/${id}`, values);
       router.reload();
     } catch (error) {
       console.log(error);

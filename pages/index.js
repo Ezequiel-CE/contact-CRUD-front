@@ -12,7 +12,7 @@ const Home = ({ contacts }) => {
 };
 
 export async function getServerSideProps() {
-  const { data } = await axios.get("http://localhost:4000/api/contacts");
+  const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}`);
   const { contacts } = data;
 
   return {

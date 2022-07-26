@@ -10,7 +10,7 @@ const ContactForm = () => {
 
   const submitContactHandler = async (values) => {
     try {
-      await axios.post(`http://localhost:4000/api/contacts`, values);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}`, values);
       router.push("/");
     } catch (error) {
       console.log(error);

@@ -30,7 +30,7 @@ const ContactPage = ({ contact }) => {
 export async function getServerSideProps(context) {
   const { contactId } = context.params;
   const { data } = await axios.get(
-    `http://localhost:4000/api/contacts/${contactId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/${contactId}`
   );
   const { contact } = data;
 

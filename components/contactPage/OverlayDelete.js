@@ -7,7 +7,7 @@ const OverlayDelete = ({ close, id }) => {
 
   const deleteContactHandler = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/contacts/${id}`);
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/${id}`);
       router.push("/");
     } catch (error) {
       console.log(error);
