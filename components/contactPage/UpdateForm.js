@@ -3,7 +3,7 @@ import { MyInput } from "../shared/MyInputs";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { formValidation } from "../../schemas/form-validation";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AppContex from "../../store/app-context";
 
 const UpdateForm = ({ id }) => {
@@ -11,10 +11,14 @@ const UpdateForm = ({ id }) => {
 
   const { currectContact, closeModal } = useContext(AppContex);
 
+  const [btnState, setBtnState] = useState(false);
+
   const updateContactHandler = async (id, values) => {
     try {
+      setBtnState(true);
       await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/${id}`, values);
       router.reload();
+      setBtnState(false);
     } catch (error) {
       console.log(error);
     }
@@ -73,8 +77,9 @@ const UpdateForm = ({ id }) => {
             />
             <div className="flex justify-between ">
               <button
-                className=" bg-blue-600 text-white  focus:ring-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                className=" bg-blue-600 text-white  focus:ring-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2 disabled:bg-slate-400 disabled:text-slate-500"
                 type="submit"
+                disabled={btnState}
               >
                 Yes, Im sure
               </button>
